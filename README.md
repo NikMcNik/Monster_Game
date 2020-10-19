@@ -1,2 +1,2 @@
-# Monster_Game
+# Monster Game
 A text based monster game
