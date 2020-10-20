@@ -14,7 +14,11 @@ Health(min, max) {
     max = Math.floor(max);
     this.health= Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive 
   } 
-  
+armourClass(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    this.health= Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive 
+  } 
 
 }
 
