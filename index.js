@@ -56,17 +56,14 @@ console.log("A Monster approches");
 console.log("Prepare to Fight!");
 while (koz.health > 0 && cathulu.health > 0) {
   let attackChosen = readlineSync.question("Choose your attack: ");
-  if ((attackChosen = "slice" && sliceCoolDown == 0)) {
+  if ((attackChosen = "slice")) {
     cathulu.health -= koz.slice;
-    sliceCoolDown = 1;
   }
-  if ((attackChosen = "hack" && hackCoolDown == 0)) {
+  if ((attackChosen = "hack")) {
     cathulu.health -= koz.hack;
-    hackCoolDown = 2;
   }
-  if ((attackChosen = "smash" && smashCoolDown == 0)) {
+  if ((attackChosen = "smash")) {
     cathulu.health -= koz.smash;
-    smashCoolDown = 3;
   }
   if (koz.health <= 0) {
     console.log("You were killed by the monster");
@@ -76,4 +73,5 @@ while (koz.health > 0 && cathulu.health > 0) {
     console.log("You Defeated the Monster!!!");
     break;
   }
+  console.log(cathulu.health);
 }
