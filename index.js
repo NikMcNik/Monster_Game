@@ -33,23 +33,47 @@ class Player extends Character {
 }
 
 class Monster extends Character {
-  attack(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    this.attack = Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+  constructor(
+    healthMin,
+    healthMax,
+    armourClassMin,
+    armourClassMax,
+    attackMin,
+    attackMax
+  ) {
+    super(healthMin, healthMax, armourClassMin, armourClassMax);
+    this.attack = this.randomIntInclusive(attackMin, attackMax);
   }
 }
 
 const koz = new Player(15, 30, 10, 15, 13, 20, 1, 15, 25, 17, 28);
 console.log(koz);
 
-const cathulu = new Monster(50, 90, 40, 70);
+const cathulu = new Monster(50, 90, 40, 70, 15, 30);
 console.log(cathulu);
 
 console.log("A Monster approches");
 console.log("Prepare to Fight!");
 while (koz.health > 0 && cathulu.health > 0) {
   let attackChosen = readlineSync.question("Choose your attack: ");
-  console.log(attackChosen);
-  break;
+  if ((attackChosen = "slice" && sliceCoolDown == 0)) {
+    cathulu.health -= koz.slice;
+    sliceCoolDown = 1;
+  }
+  if ((attackChosen = "hack" && hackCoolDown == 0)) {
+    cathulu.health -= koz.hack;
+    hackCoolDown = 2;
+  }
+  if ((attackChosen = "smash" && smashCoolDown == 0)) {
+    cathulu.health -= koz.smash;
+    smashCoolDown = 3;
+  }
+  if (koz.health <= 0) {
+    console.log("You were killed by the monster");
+    break;
+  }
+  if (cathulu.health <= 0) {
+    console.log("You Defeated the Monster!!!");
+    break;
+  }
 }
