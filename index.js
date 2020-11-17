@@ -56,13 +56,13 @@ console.log("A Monster approches");
 console.log("Prepare to Fight!");
 while (koz.health > 0 && cathulu.health > 0) {
   let attackChosen = readlineSync.question("Choose your attack: ");
-  if (attackChosen == "slice") {
+  if (attackChosen.toLowerCase() == "slice") {
     cathulu.health -= koz.slice;
   }
-  if (attackChosen == "hack") {
+  if (attackChosen.toLowerCase() == "hack") {
     cathulu.health -= koz.hack;
   }
-  if (attackChosen == "smash") {
+  if (attackChosen.toLowerCase() == "smash") {
     cathulu.health -= koz.smash;
   }
   console.log(cathulu.health);
