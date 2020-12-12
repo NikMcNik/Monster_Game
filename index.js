@@ -99,8 +99,9 @@ while (koz.isAlive() && cathulu.isAlive()) {
   // you attack monster
   koz.dealDamage(damage, cathulu);
 
-  // monster attacks you
-  cathulu.dealDamage(koz);
+  if (cathulu.isAlive()) {
+    cathulu.dealDamage(koz);
+  }
 }
 
 if (koz.health <= 0) {
