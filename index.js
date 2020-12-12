@@ -41,6 +41,17 @@ class Player extends Character {
     this.hack = this.randomIntInclusive(hackMin, hackMax);
     this.smash = this.randomIntInclusive(smashMin, smashMax);
   }
+  determineDamage(attackChosen) {
+    let damage = false;
+    if (attackChosen.toLowerCase() == "slice") {
+      damage = koz.slice;
+    } else if (attackChosen.toLowerCase() == "hack") {
+      damage = koz.hack;
+    } else if (attackChosen.toLowerCase() == "smash") {
+      damage = koz.smash;
+    }
+    return damage;
+  }
 }
 
 class Monster extends Character {
@@ -77,14 +88,8 @@ console.log("Prepare to Fight!");
 
 while (koz.isAlive() && cathulu.isAlive()) {
   let attackChosen = readlineSync.question("\nChoose your attack: ");
-  let damage;
-  if (attackChosen.toLowerCase() == "slice") {
-    damage = koz.slice;
-  } else if (attackChosen.toLowerCase() == "hack") {
-    damage = koz.hack;
-  } else if (attackChosen.toLowerCase() == "smash") {
-    damage = koz.smash;
-  } else {
+  let damage = koz.determineDamage(attackChosen);
+  if (!damage) {
     console.log("Invalid attack chosen, Try again");
     continue;
   }
