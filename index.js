@@ -10,6 +10,9 @@ class Character {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
   }
+  isAlive() {
+    return this.health > 0;
+  }
 }
 
 class Player extends Character {
@@ -46,26 +49,35 @@ class Monster extends Character {
   }
 }
 
-const koz = new Player(15, 30, 10, 15, 13, 20, 1, 15, 25, 17, 28);
+const koz = new Player(25, 50, 10, 15, 13, 20, 1, 15, 25, 17, 28);
 console.log(koz);
 
-const cathulu = new Monster(50, 90, 40, 70, 15, 30);
+const cathulu = new Monster(20, 40, 40, 70, 5, 15);
 console.log(cathulu);
 
 console.log("A Monster approches");
 console.log("Prepare to Fight!");
-while (koz.health > 0 && cathulu.health > 0) {
+while (koz.isAlive() && cathulu.isAlive()) {
   let attackChosen = readlineSync.question("Choose your attack: ");
+  let damage;
   if (attackChosen.toLowerCase() == "slice") {
-    cathulu.health -= koz.slice;
+    damage = koz.slice;
+  } else if (attackChosen.toLowerCase() == "hack") {
+    damage = koz.hack;
+  } else if (attackChosen.toLowerCase() == "smash") {
+    damage = koz.smash;
+  } else {
+    console.log("Invalid attack chosen, Try again");
+    continue;
   }
-  if (attackChosen.toLowerCase() == "hack") {
-    cathulu.health -= koz.hack;
-  }
-  if (attackChosen.toLowerCase() == "smash") {
-    cathulu.health -= koz.smash;
-  }
-  console.log(cathulu.health);
+  // you attack monster
+  cathulu.health -= damage;
+  console.log("You delt " + damage + " damage to the monster");
+  console.log("Monsters health is now " + cathulu.health);
+  //monster attacks you
+  koz.health -= cathulu.attack;
+  console.log("The Monster delt " + cathulu.attack + " damage to you");
+  console.log("Your health is now " + koz.health);
 }
 
 if (koz.health <= 0) {
