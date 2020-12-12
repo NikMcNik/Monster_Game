@@ -13,6 +13,12 @@ class Character {
   isAlive() {
     return this.health > 0;
   }
+  dealDamage(damage, opponent) {
+    // you attack monster
+    opponent.health -= damage;
+    console.log(this.name + " delt " + damage + " damage to " + opponent.name);
+    console.log(opponent.name_your + " health is now " + opponent.health);
+  }
 }
 
 class Player extends Character {
@@ -29,6 +35,8 @@ class Player extends Character {
     smashMax
   ) {
     super(healthMin, healthMax, armourClassMin, armourClassMax);
+    this.name = "You";
+    this.name_your = "Your";
     this.slice = this.randomIntInclusive(sliceMin, sliceMax);
     this.hack = this.randomIntInclusive(hackMin, hackMax);
     this.smash = this.randomIntInclusive(smashMin, smashMax);
@@ -45,6 +53,8 @@ class Monster extends Character {
     attackMax
   ) {
     super(healthMin, healthMax, armourClassMin, armourClassMax);
+    this.name = "The Monster";
+    this.name_your = "Monster's";
     this.attack = this.randomIntInclusive(attackMin, attackMax);
   }
 }
@@ -61,6 +71,7 @@ console.log("Smash is dealing " + koz.smash + " damage");
 console.log("Defeat the monster! Good luck on your advenure!\n");
 console.log("A Monster approches");
 console.log("Prepare to Fight!");
+
 while (koz.isAlive() && cathulu.isAlive()) {
   let attackChosen = readlineSync.question("\nChoose your attack: ");
   let damage;
@@ -78,14 +89,10 @@ while (koz.isAlive() && cathulu.isAlive()) {
   console.log();
 
   // you attack monster
-  cathulu.health -= damage;
-  console.log("You delt " + damage + " damage to the monster");
-  console.log("Monsters health is now " + cathulu.health);
+  koz.dealDamage(damage, cathulu);
 
-  //monster attacks you
-  koz.health -= cathulu.attack;
-  console.log("The Monster delt " + cathulu.attack + " damage to you");
-  console.log("Your health is now " + koz.health);
+  // monster attacks you
+  cathulu.dealDamage(cathulu.attack, koz);
 }
 
 if (koz.health <= 0) {
