@@ -50,15 +50,19 @@ class Monster extends Character {
 }
 
 const koz = new Player(25, 50, 10, 15, 13, 20, 1, 15, 25, 17, 28);
-console.log(koz);
-
 const cathulu = new Monster(20, 40, 40, 70, 5, 15);
-console.log(cathulu);
 
+console.clear();
+console.log("Welcome to your adventure!");
+console.log("You have 3 different attacs, slice, hack and smash.");
+console.log("Slice is dealing " + koz.slice + " damage");
+console.log("Hack is dealing " + koz.hack + " damage");
+console.log("Smash is dealing " + koz.smash + " damage");
+console.log("Defeat the monster! Good luck on your advenure!\n");
 console.log("A Monster approches");
 console.log("Prepare to Fight!");
 while (koz.isAlive() && cathulu.isAlive()) {
-  let attackChosen = readlineSync.question("Choose your attack: ");
+  let attackChosen = readlineSync.question("\nChoose your attack: ");
   let damage;
   if (attackChosen.toLowerCase() == "slice") {
     damage = koz.slice;
@@ -70,10 +74,14 @@ while (koz.isAlive() && cathulu.isAlive()) {
     console.log("Invalid attack chosen, Try again");
     continue;
   }
+
+  console.log();
+
   // you attack monster
   cathulu.health -= damage;
   console.log("You delt " + damage + " damage to the monster");
   console.log("Monsters health is now " + cathulu.health);
+
   //monster attacks you
   koz.health -= cathulu.attack;
   console.log("The Monster delt " + cathulu.attack + " damage to you");
