@@ -57,6 +57,9 @@ class Monster extends Character {
     this.name_your = "Monster's";
     this.attack = this.randomIntInclusive(attackMin, attackMax);
   }
+  dealDamage(opponent) {
+    super.dealDamage(this.attack, opponent);
+  }
 }
 
 const koz = new Player(25, 50, 10, 15, 13, 20, 1, 15, 25, 17, 28);
@@ -92,7 +95,7 @@ while (koz.isAlive() && cathulu.isAlive()) {
   koz.dealDamage(damage, cathulu);
 
   // monster attacks you
-  cathulu.dealDamage(cathulu.attack, koz);
+  cathulu.dealDamage(koz);
 }
 
 if (koz.health <= 0) {
