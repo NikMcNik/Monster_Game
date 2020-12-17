@@ -44,11 +44,11 @@ class Player extends Character {
   determineDamage(attackChosen) {
     let damage = false;
     if (attackChosen.toLowerCase() == "slice") {
-      damage = koz.slice;
+      damage = this.slice;
     } else if (attackChosen.toLowerCase() == "hack") {
-      damage = koz.hack;
+      damage = this.hack;
     } else if (attackChosen.toLowerCase() == "smash") {
-      damage = koz.smash;
+      damage = this.smash;
     }
     return damage;
   }
@@ -73,7 +73,7 @@ class Monster extends Character {
   }
 }
 
-const koz = new Player(25, 50, 10, 15, 13, 20, 1, 15, 25, 17, 28);
+const koz = new Player(25, 50, 10, 15, 13, 20, 15, 25, 17, 28);
 const cathulu = new Monster(20, 40, 40, 70, 5, 15);
 
 console.clear();
