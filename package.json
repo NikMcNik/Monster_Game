@@ -2,13 +2,21 @@
   "name": "monster_game",
   "version": "1.0.0",
   "description": "a gameabout killing monsters",
-  "main": "index.js",
+  "main": "dist/main.js",
   "dependencies": {
     "readline-sync": "^1.4.10"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "webpack": "^5.12.3",
+    "webpack-cli": "^4.3.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch --progress"
   },
   "repository": {
     "type": "git",
